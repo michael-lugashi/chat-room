@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 function Chat(props) {
  //  const messageHistory = [];
  const [messages, setMessages] = useState([]);
+ const [users, setUsers] = useState('');
  const inputEl = useRef(null);
  //  const updateMessages = (mes) => {
  // //   debugger;
@@ -18,7 +19,7 @@ function Chat(props) {
  };
 
  useEffect(() => {
-  debugger;
+//   debugger;
   window.addEventListener('load', redirect);
   console.log('chat' + props.username);
   if (props.username) {
@@ -32,8 +33,13 @@ function Chat(props) {
     // let copiedPerson = Object.assign({}, e);
     // const newMessages = [...messages];
     // newMessages.push(e.data);
+    console.log(e)
     setMessages(JSON.parse(e.data));
    };
+   chat.addEventListener('userChange', (e) => {
+       console.log('change')
+    setUsers(e.data);
+   });
   }
   console.log('login: ' + props.username);
  }, []);
@@ -80,6 +86,8 @@ function Chat(props) {
    {messages.map((message, i) => {
     return <li key={i + message}>{message}</li>;
    })}
+
+   <h2>{users}</h2>
   </div>
  );
 }

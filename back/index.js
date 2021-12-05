@@ -22,7 +22,7 @@ console.log(clients);
 let sendText = (text, showUserName = true) => {
  console.log(text);
  console.log(clientNames);
-//  let data = '';
+ //  let data = '';
  let date = new Date();
  let timestamp = `[${date.getHours()}:${date.getMinutes()}]`;
  if (showUserName) {
@@ -37,6 +37,17 @@ let sendText = (text, showUserName = true) => {
   clients[clientId].write(data);
  }
 };
+let updateChatUsers = () => {
+ let allMates = '';
+ for (const cliId in clientNames) {
+  allMates += `${clientNames[cliId]}`;
+  if (cliId < clientId) allMates += ' ';
+ }
+ const users = `event: userChange\ndata: logged in ${allMates}\n\n`;
+ for (const clientId in clients) {
+  clients[clientId].write(users);
+ }
+};
 
 app.get('/chat/login/:name', (req, res) => {
  res.writeHead(200, {
@@ -44,30 +55,31 @@ app.get('/chat/login/:name', (req, res) => {
   'Cache-Control': 'no-cache',
   Connection: 'keep-alive',
  });
-//  console.log(clientId);j
-const myClientId = clientId
+ //  console.log(clientId);j
+ const myClientId = clientId;
  clients[myClientId] = res;
  clientNames[myClientId] = req.params.name;
 
  req.on('close', () => {
   delete clients[myClientId];
   actUserName = '';
-  console.log(myClientId)
-  console.log(myClientId)
+  console.log(myClientId);
+  console.log(myClientId);
   sendText(clientNames[myClientId] + ' disconnected!', false);
   delete clientNames[myClientId];
+  updateChatUsers()
  });
  ++clientId;
 
  sendText(req.params.name + ' connected!', false);
 
- let allMates = '';
- for (const cliId in clientNames) {
-  allMates += `${clientNames[cliId]}`;
-  if (cliId < clientId) allMates += ' ';
- }
-
- sendText(`logged in [${allMates}]`, false);
+ //  let allMates = '';
+ //  for (const cliId in clientNames) {
+ //   allMates += `${clientNames[cliId]}`;
+ //   if (cliId < clientId) allMates += ' ';
+ //  }
+ updateChatUsers()
+ //  sendText(`logged in [${allMates}]`, false);
 });
 
 app.post('/send-message', (req, res) => {
