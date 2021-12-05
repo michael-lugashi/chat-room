@@ -1,6 +1,7 @@
 // import axios from 'axios';
 import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import '../styles/Login.css'
 function Login(props) {
     const inputUsername = useRef(null);
     // let chat;
@@ -20,29 +21,30 @@ function Login(props) {
 
  return (
   <div className="login-page">
-   <h1>Chat Room Login</h1>
-   <form
+   <h1 className={'login-heading'}>Chat Room Login</h1>
+   <div className={'username-input-container'}
    // onSubmit={(e) => {
    //  e.preventDefault();
    //  debugger;
    //  props.setUsername(inputUsername.current.value);
    // }}
    >
-    <label htmlFor="usernameInput">Username:</label>
-    <input ref={inputUsername} name="usernameInput" type="text" />
+    <input className={'username-input'} placeholder={'Username: '} ref={inputUsername} name="usernameInput" type="text" />
+    <label className={'input-label'} htmlFor="usernameInput">Username: </label>
     <Link
      to={{
       pathname: '/home',
      }}
     >
     <button
+    className={'login-btn'}
      onClick={() => props.setUsername(inputUsername.current.value)}
     //  value="submit"
     >
-     Submit
+     Login
     </button>
     </Link>
-   </form>
+   </div>
   </div>
  );
 }

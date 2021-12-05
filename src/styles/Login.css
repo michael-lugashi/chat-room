@@ -1,0 +1,86 @@
+.login-page {
+ display: flex;
+ align-items: center;
+ flex-direction: column;
+}
+.login-heading {
+ font-size: 4.5vw;
+}
+
+.login-btn {
+ font-size: 2.6vw;
+ font-weight: bold;
+ -moz-box-sizing: content-box; /* or `border-box` */
+ -webkit-box-sizing: content-box;
+ box-sizing: content-box;
+ height: 3.3vw;
+ border-radius: 0 0.75vw 0.75vw 0;
+ background-color: #d4fbff;
+ color: #a37656;
+ border: solid #679ea3 0.225vw;
+}
+
+.login-btn:hover {
+ background-color: #a37656;
+ color: #ffffff;
+}
+
+/* FLOATING LABEL START */
+.username-input-container {
+ display: flex;
+ position: relative;
+}
+.input-label {
+ position: absolute;
+ visibility: hidden;
+ top: 0.38vw;
+ left: 0.6vw;
+ color: #a37656;
+ font-size: 2vw;
+}
+.username-input {
+ background-color: #f0f8ff;
+ width: 30vw;
+ border-width: 0.2vw 0 0.2vw 0;
+ padding-left: 0.7vw;
+ color: #a37656;
+ height: 3vw;
+ border: solid #679ea3 0.225vw;
+ font-size: 2vw;
+ padding: 0.3vw;
+ border-width: 0.2vw;
+ border-radius: 0.75vw 0 0 0.75vw;
+}
+.username-input:focus {
+ outline: none;
+ height: 1.9vw;
+ padding-top: 1.4vw;
+}
+.username-input::placeholder {
+ color: #a37656;
+ font-family: 'RocknRoll One', sans-serif;
+ font-size: 2vw;
+}
+.username-input:focus::placeholder {
+ color: transparent;
+}
+.username-input-container:focus-within .input-label {
+ transition: 0.5s;
+ visibility: visible;
+ font-size: 1vw;
+ top: 0.3vw;
+ left: 0.7vw;
+ color: #679ea3;
+}
+.username-input:not(:placeholder-shown) + .input-label {
+ visibility: visible;
+ font-size: 1vw;
+ top: 0.3vw;
+ left: 0.7vw;
+ color: #679ea3;
+}
+.username-input:not(:placeholder-shown) {
+ height: 1.9vw;
+ padding-top: 1.4vw;
+}
+/* FLOATING LABEL END */
