@@ -2,38 +2,44 @@ import axios from 'axios';
 import { useEffect, useRef, useState } from 'react';
 
 function Chat(props) {
-//  const messageHistory = [];
+ //  const messageHistory = [];
  const [messages, setMessages] = useState([]);
  const inputEl = useRef(null);
-//  const updateMessages = (mes) => {
-// //   debugger;
-//   console.log(messages);
-//   const newMessages = [...messages];
-//   newMessages.push(mes);
-//   setMessages(newMessages);
-//  };
-
+ //  const updateMessages = (mes) => {
+ // //   debugger;
+ //   console.log(messages);
+ //   const newMessages = [...messages];
+ //   newMessages.push(mes);
+ //   setMessages(newMessages);
+ //  };
+ const redirect = () => {
+  document.removeEventListener('load', redirect);
+  window.location.pathname = '/';
+ };
 
  useEffect(() => {
   debugger;
+  window.addEventListener('load', redirect);
   console.log('chat' + props.username);
   if (props.username) {
-   const chat = new EventSource(`http://localhost:3000/chat/login/${props.username}`);
+   const chat = new EventSource(
+    `http://localhost:3000/chat/login/${props.username}`
+   );
    chat.onmessage = (e) => {
     // e.preventDefault();
     // console.log(e);
     // debugger;
     // let copiedPerson = Object.assign({}, e);
-    const newMessages = [...messages];
-    newMessages.push(e.data);
-    setMessages(newMessages);
+    // const newMessages = [...messages];
+    // newMessages.push(e.data);
+    setMessages(JSON.parse(e.data));
    };
   }
   console.log('login: ' + props.username);
  }, []);
-//  useEffect(() => {
-//   console.log('refreshed');
-//  }, []);
+ //  useEffect(() => {
+ //   console.log('refreshed');
+ //  }, []);
  return (
   <div className="login-page">
    <h1>Chat Room</h1>
