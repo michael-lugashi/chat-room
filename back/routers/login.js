@@ -1,26 +1,30 @@
 const express = require('express');
 const router = express.Router();
+let { clients, clientNames, clientId } = require('../model/chatInfo');
+const sendText = require('../updating-front-functions/send-text');
+const updateChatUsers = require('../updating-front-functions/send-current-users');
 
-router.post('', (req, res)=>{
-    if (!req.body.message) {
-        res.status(400).send('Enter A Username!')
-        return
-    }
-    res.writeHead(200, {
-        "Content-Type": "text/event-stream",
-        Connection: "keep-alive",
-      });
-      res.write('data: yoo')
-      setInterval(()=>{
-          res.write('data: hellos\n\n')
-      }, 1000)
-      
-    // res.send('login')
+router.get('/:name', (req, res) => {
+ res.writeHead(200, {
+  'Content-Type': 'text/event-stream',
+  'Cache-Control': 'no-cache',
+  Connection: 'keep-alive',
+ });
 
+ const myClientId = clientId;
+ clients[myClientId] = res;
+ clientNames[myClientId] = req.params.name;
 
-})
+ req.on('close', () => {
+  delete clients[myClientId];
+  sendText(clientNames[myClientId] + ' disconnected!');
+  delete clientNames[myClientId];
+  updateChatUsers();
+ });
 
+ sendText(req.params.name + ' connected!');
+ updateChatUsers();
+ ++clientId;
+});
 
-
-
-module.exports = router
+module.exports = router;
