@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect, useRef, useState } from 'react';
-
+import '../styles/Chat.css';
 function Chat(props) {
  //  const messageHistory = [];
  const [messages, setMessages] = useState([]);
@@ -19,7 +19,7 @@ function Chat(props) {
  };
 
  useEffect(() => {
-//   debugger;
+  //   debugger;
   window.addEventListener('load', redirect);
   console.log('chat' + props.username);
   if (props.username) {
@@ -33,11 +33,11 @@ function Chat(props) {
     // let copiedPerson = Object.assign({}, e);
     // const newMessages = [...messages];
     // newMessages.push(e.data);
-    console.log(e)
+    console.log(e);
     setMessages(JSON.parse(e.data));
    };
    chat.addEventListener('userChange', (e) => {
-       console.log('change')
+    console.log('change');
     setUsers(e.data);
    });
   }
@@ -47,9 +47,14 @@ function Chat(props) {
  //   console.log('refreshed');
  //  }, []);
  return (
-  <div className="login-page">
-   <h1>Chat Room</h1>
-   <form>
+  <div className="chat-page">
+   <div className={'chat'}>
+    <h1>Chat Room</h1>
+    {messages.map((message, i) => {
+     return <li key={i + message}>{message}</li>;
+    })}
+   </div>
+   <form className="chat-input">
     <label htmlFor="messageInput">Send Message:</label>
     <input ref={inputEl} name="messageInput" type="text" />
     <button
@@ -79,15 +84,13 @@ function Chat(props) {
      }}
      //  value="submit"
     >
-     Submit
+     Send
     </button>
    </form>
 
-   {messages.map((message, i) => {
-    return <li key={i + message}>{message}</li>;
-   })}
-
-   <h2>{users}</h2>
+   <div className={'users'}>
+    <h2>{users}</h2>
+   </div>
   </div>
  );
 }

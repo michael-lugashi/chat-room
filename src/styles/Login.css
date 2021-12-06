@@ -6,14 +6,18 @@
 .login-heading {
  font-size: 4.5vw;
 }
-
+.link {
+    color: inherit;
+    text-decoration: none;
+}
 .login-btn {
- font-size: 2.6vw;
+    margin: 0;
+ font-size: 2.9vw;
  font-weight: bold;
  -moz-box-sizing: content-box; /* or `border-box` */
  -webkit-box-sizing: content-box;
  box-sizing: content-box;
- height: 3.3vw;
+ /* height: 3.4vw; */
  border-radius: 0 0.75vw 0.75vw 0;
  background-color: #d4fbff;
  color: #a37656;
@@ -29,6 +33,7 @@
 .username-input-container {
  display: flex;
  position: relative;
+ align-items: flex-end;
 }
 .input-label {
  position: absolute;
@@ -39,6 +44,9 @@
  font-size: 2vw;
 }
 .username-input {
+ -moz-box-sizing: content-box; /* or `border-box` */
+ -webkit-box-sizing: content-box;
+ box-sizing: content-box;
  background-color: #f0f8ff;
  width: 30vw;
  border-width: 0.2vw 0 0.2vw 0;

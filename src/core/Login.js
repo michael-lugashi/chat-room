@@ -31,19 +31,19 @@ function Login(props) {
    >
     <input className={'username-input'} placeholder={'Username: '} ref={inputUsername} name="usernameInput" type="text" />
     <label className={'input-label'} htmlFor="usernameInput">Username: </label>
-    <Link
-     to={{
-      pathname: '/home',
-     }}
-    >
     <button
     className={'login-btn'}
      onClick={() => props.setUsername(inputUsername.current.value)}
     //  value="submit"
     >
+    <Link className={'link'}
+     to={{
+      pathname: '/home',
+     }}
+    >
      Login
-    </button>
     </Link>
+    </button>
    </div>
   </div>
  );
