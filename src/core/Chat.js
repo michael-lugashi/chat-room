@@ -4,7 +4,7 @@ import '../styles/Chat.css';
 function Chat(props) {
  //  const messageHistory = [];
  const [messages, setMessages] = useState([]);
- const [users, setUsers] = useState('');
+ const [users, setUsers] = useState({});
  const inputEl = useRef(null);
  //  const updateMessages = (mes) => {
  // //   debugger;
@@ -38,7 +38,8 @@ function Chat(props) {
    };
    chat.addEventListener('userChange', (e) => {
     console.log('change');
-    setUsers(e.data);
+    console.log(JSON.parse(e.data));
+    setUsers(JSON.parse(e.data));
    });
   }
   console.log('login: ' + props.username);
@@ -51,7 +52,13 @@ function Chat(props) {
    <div className={'chat'}>
     <h1>Chat Room</h1>
     {messages.map((message, i) => {
-     return <li key={i + message}>{message}</li>;
+     return (
+      <li key={i + message}>
+       <span>{message.timestamp}</span>
+       <span>{message.sender}</span>
+       <span>{message.text}</span>
+      </li>
+     );
     })}
    </div>
    <form className="chat-input">
@@ -89,7 +96,12 @@ function Chat(props) {
    </form>
 
    <div className={'users'}>
-    <h2>{users}</h2>
+    {Object.values(users).map((user) => {
+     return <li>{user}</li>;
+    })}
+    {/* {users.map(user=>{
+      return <h2>user</h2>
+    })} */}
    </div>
   </div>
  );

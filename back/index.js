@@ -19,31 +19,32 @@ const messageHistory = [];
 console.log(clientNames);
 console.log(clients);
 
-let sendText = (text, showUserName = true) => {
+let sendText = (text) => {
+ const currentText = {};
+ currentText.sender=actUserName
+ currentText.text = text 
  console.log(text);
  console.log(clientNames);
  //  let data = '';
  let date = new Date();
- let timestamp = `[${date.getHours()}:${date.getMinutes()}]`;
- if (showUserName) {
-  messageHistory.push(`${timestamp} <${actUserName}> ${text}`);
-  //    data = `data: ${timestamp} <${actUserName}> ${text}\n\n`;
- } else {
-  messageHistory.push(`${timestamp} ${text}`);
-  //    data = `data: ${timestamp} ${text}\n\n`;
- }
+ let timestamp = `${date.getHours()}:${date.getMinutes()}`;
+    currentText.timestamp = timestamp
+    messageHistory.push(currentText)
+//  messageHistory.push(`${timestamp} <${actUserName}> ${text}`);
+ //   data = `data: ${timestamp} <${actUserName}> ${text}\n\n`;
+
  const data = `data: ${JSON.stringify(messageHistory)}\n\n`;
  for (const clientId in clients) {
   clients[clientId].write(data);
  }
 };
 let updateChatUsers = () => {
- let allMates = '';
- for (const cliId in clientNames) {
-  allMates += `${clientNames[cliId]}`;
-  if (cliId < clientId) allMates += ' ';
- }
- const users = `event: userChange\ndata: logged in ${allMates}\n\n`;
+ //  let allMates = '';
+ //  for (const cliId in clientNames) {
+ //   allMates += `${clientNames[cliId]}`;
+ //   if (cliId < clientId) allMates += ' ';
+ //  }
+ const users = `event: userChange\ndata: ${JSON.stringify(clientNames)}\n\n`;
  for (const clientId in clients) {
   clients[clientId].write(users);
  }
@@ -65,9 +66,9 @@ app.get('/chat/login/:name', (req, res) => {
   actUserName = '';
   console.log(myClientId);
   console.log(myClientId);
-  sendText(clientNames[myClientId] + ' disconnected!', false);
+  sendText(clientNames[myClientId] + ' disconnected!');
   delete clientNames[myClientId];
-  updateChatUsers()
+  updateChatUsers();
  });
  ++clientId;
 
@@ -78,7 +79,7 @@ app.get('/chat/login/:name', (req, res) => {
  //   allMates += `${clientNames[cliId]}`;
  //   if (cliId < clientId) allMates += ' ';
  //  }
- updateChatUsers()
+ updateChatUsers();
  //  sendText(`logged in [${allMates}]`, false);
 });
 
