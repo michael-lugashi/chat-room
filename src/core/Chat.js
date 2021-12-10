@@ -36,7 +36,7 @@ function Chat(props) {
 
  return (
   <div className="chat-page">
-   <Messages messages={messages} />
+   <Messages messages={messages} username={props.username} />
    <SendMessages username={props.username} />
    <Users users={users} />
   </div>

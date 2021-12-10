@@ -22,7 +22,7 @@
 .users {
  grid-area: 1 / 1 / 6 / 2;
  height: 97%;
- border-right: solid #82AEB3 0.25vw;
+ border-right: solid #82aeb3 0.25vw;
  padding-top: 10%;
 }
 .chat-header {
@@ -68,11 +68,68 @@
  border-radius: 50%;
  height: 1vw;
  width: 1vw;
- background-color: #82AEB3;
+ background-color: #82aeb3;
  margin-right: 1vw;
 }
 .user-heading {
  font-size: 1.5vw;
  margin-left: 3vw;
- color: #82AEB3;
+ color: #82aeb3;
+}
+.message-container {
+ display: flex;
+ flex-direction: column;
+ flex-direction: column;
+ background-color: #edfdff;
+ width: fit-content;
+ max-width: 30vw;
+ min-width: 15vw;
+ margin-top: 1vw;
+ border-radius: 1vw;
+ word-break: break-word;
+ font-size: 1.25vw;
+ padding-right: 1vw;
+ padding-left: 1vw;
+ margin: 1vw;
+}
+
+.general-message-container {
+ width: 20vw;
+ text-align: center;
+ font-size: 1vw;
+ border-radius: 1vw;
+ background-color: #ffe6d4;
+ margin-top: 1vw !important;
+ margin-bottom: 1vw !important;
+ margin: auto;
+}
+.name {
+ font-size: 1vw;
+ color: #679ea3;
+}
+.timestamp {
+ font-size: 1vw;
+ color: #679ea3;
+ margin-left: auto;
+}
+
+/* width */
+::-webkit-scrollbar {
+ width: 0.8vw;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+ background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+ background: #679ea3;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+ border-radius: 1vw;
+ background: #ffe6d4;
 }
