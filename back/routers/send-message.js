@@ -4,7 +4,7 @@ const sendText = require('../updating-front-functions/send-text');
 
 router.post('', (req, res) => {
  if (!req.body.username) {
-  res.send('Need to be logged in to a user!');
+  res.status(400).send('Need to be logged in to a user!');
   return;
  }
  sendText(req.body.text, req.body.username);

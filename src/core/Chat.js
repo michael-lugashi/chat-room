@@ -16,26 +16,27 @@ function Chat(props) {
 
  useEffect(() => {
   window.addEventListener('load', redirect);
-//   try {
-   if (props.username) {
-    const chat = new EventSource(
-     `http://localhost:3000/chat/login/${props.username}`
-    )
-    chat.onerror = async(e)=>{
-        await swal('Oops', 'Username already taken or Username is not between 3 and 10 character!', 'error')
-        redirect()
-    }
-    chat.onmessage = (e) => {
-     setMessages(JSON.parse(e.data));
-    };
-    chat.addEventListener('userChange', (e) => {
-     setUsers(JSON.parse(e.data));
-    });
-   }
-//   } catch (error) {
-//    swal('Oops', error.response.data, 'error');
-//   }
+  if (props.username) {
+   const chat = new EventSource(
+    `http://localhost:3000/chat/login/${props.username}`
+   );
+   chat.onerror = async () => {
+    await swal(
+     'Oops',
+     'Username already taken or username is not between 3 and 10 character!',
+     'error'
+    );
+    redirect();
+   };
+   chat.onmessage = (e) => {
+    setMessages(JSON.parse(e.data));
+   };
+   chat.addEventListener('userChange', (e) => {
+    setUsers(JSON.parse(e.data));
+   });
+  }
  }, []);
+
  useEffect(() => {
   try {
    document.querySelector('#last').scrollIntoView({ behavior: 'smooth' });

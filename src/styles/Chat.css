@@ -44,6 +44,7 @@
  font-family: 'RocknRoll One', sans-serif;
  font-size: 1.5vw;
  border: none;
+ border-top: solid .25vw;
  color: #679ea3;
 }
 .message-input:focus {
@@ -78,7 +79,6 @@
 }
 .message-container {
  display: flex;
- flex-direction: column;
  flex-direction: column;
  background-color: #edfdff;
  width: fit-content;
