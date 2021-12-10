@@ -21,6 +21,9 @@
 }
 .users {
  grid-area: 1 / 1 / 6 / 2;
+ height: 97%;
+ border-right: solid #82AEB3 0.25vw;
+ padding-top: 10%;
 }
 .chat-header {
  text-align: center;
@@ -52,4 +55,24 @@
  top: 0.5vw;
  right: 0.5vw;
  font-size: 125%;
+}
+
+.user {
+ font-size: 2vw;
+ font-weight: bold;
+ list-style-type: none;
+ margin-left: 3vw;
+}
+.dot {
+ display: inline-block;
+ border-radius: 50%;
+ height: 1vw;
+ width: 1vw;
+ background-color: #82AEB3;
+ margin-right: 1vw;
+}
+.user-heading {
+ font-size: 1.5vw;
+ margin-left: 3vw;
+ color: #82AEB3;
 }

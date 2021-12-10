@@ -6,14 +6,15 @@ function Messages(props) {
    <h1 className={'chat-header'}>Chat Room</h1>
    {props.messages.map((message, i) => {
     return (
-     <li
-      id={props.messages.length-1 === i ? 'last' : ''}
+     <div
+      className="message-container"
+      id={props.messages.length - 1 === i ? 'last' : ''}
       key={i + message}
      >
-      <span>{message.timestamp}</span>
-      <span>{message.sender}</span>
-      <span>{message.text}</span>
-     </li>
+      <div className="name">{message.sender}</div>
+      <div className="message">{message.text}</div>
+      <div className="timestamp">{message.timestamp}</div>
+     </div>
     );
    })}
   </div>
