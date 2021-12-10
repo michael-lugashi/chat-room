@@ -15,7 +15,6 @@ function Chat(props) {
 
  useEffect(() => {
   window.addEventListener('load', redirect);
-  
   if (props.username) {
    const chat = new EventSource(
     `http://localhost:3000/chat/login/${props.username}`
@@ -27,7 +26,13 @@ function Chat(props) {
     setUsers(JSON.parse(e.data));
    });
   }
+  //   window.scrollTo(0, document.querySelector('.chat').scrollHeight);
  }, []);
+ useEffect(() => {
+     try {
+      document.querySelector('#last').scrollIntoView({ behavior: 'smooth' });
+  } catch (error) {}
+ });
 
  return (
   <div className="chat-page">

@@ -6,9 +6,14 @@ function SendMessages(props) {
 
  return (
   <form className="chat-input">
-   <label htmlFor="messageInput">Send Message:</label>
-   <input ref={inputEl} name="messageInput" type="text" />
-   <button
+   <textarea
+    ref={inputEl}
+    className={'message-input'}
+    name="messageInput"
+    type="text"
+   />
+   <span
+    className={'send-btn'}
     onClick={async (e) => {
      e.preventDefault();
      try {
@@ -20,15 +25,15 @@ function SendMessages(props) {
         text: inputEl.current.value,
        }
       );
-      console.log(sendMessage)
+      console.log(sendMessage);
      } catch (error) {
       console.log(error);
      }
      console.log('sent message');
     }}
    >
-    Send
-   </button>
+    <a href={'#last'}>📩</a>
+   </span>
   </form>
  );
 }

@@ -3,6 +3,8 @@
 body {
  margin: 0;
  font-family: 'RocknRoll One', sans-serif;
- background-color: #D4FBFF;
- color: #A37656
+ background-color: #d4fbff;
+ color: #a37656;
+ overflow-y: hidden; /* Hide vertical scrollbar */
+ overflow-x: hidden; /* Hide horizontal scrollbar */
 }
