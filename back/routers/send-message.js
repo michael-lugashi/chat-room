@@ -4,12 +4,11 @@ const sendText = require('../updating-front-functions/send-text');
 
 router.post('', (req, res) => {
  if (!req.body.username) {
-  res.json({ success: false });
+  res.send('Need to be logged in to a user!');
   return;
  }
-
  sendText(req.body.text, req.body.username);
- res.json({ success: true, text: req.body.text });
+ res.json({ success: true });
 });
 
 module.exports = router;

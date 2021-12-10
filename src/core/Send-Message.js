@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { useRef } from 'react';
+import swal from 'sweetalert';
 
 function SendMessages(props) {
  const inputEl = useRef(null);
-
  return (
   <form className="chat-input">
    <textarea
@@ -15,24 +15,25 @@ function SendMessages(props) {
    <span
     className={'send-btn'}
     onClick={async (e) => {
-     e.preventDefault();
      try {
-      console.log('try');
-      const sendMessage = await axios.post(
-       'http://localhost:3000/send-message',
-       {
-        username: props.username,
-        text: inputEl.current.value,
-       }
-      );
-      console.log(sendMessage);
-     } catch (error) {
-      console.log(error);
+      if (!inputEl.current.value) {
+       throw new Error('Cannot send empty message!');
+      }
+      await axios.post('http://localhost:3000/send-message', {
+       username: props.username,
+       text: inputEl.current.value,
+      });
+      inputEl.current.value = '';
+     } catch (err) {
+      if (err.response) {
+       swal('Oops!', err.response.data, 'error');
+      } else {
+       swal('Oops!', err.message, 'error');
+      }
      }
-     console.log('sent message');
     }}
    >
-    <a href={'#last'}>📩</a>
+    📩
    </span>
   </form>
  );

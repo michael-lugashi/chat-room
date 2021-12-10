@@ -125,11 +125,11 @@
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
+ border-radius: 1vw;
  background: #679ea3;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
- border-radius: 1vw;
  background: #ffe6d4;
 }
